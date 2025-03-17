@@ -26,6 +26,34 @@ def rail_fence_encode(string, key):
     post: returns a single string that is encoded with
         rail fence algorithm
     """
+    string_len = len(string)
+    string_lst = [[None] * string_len for val in range(key)]
+    j = 0
+    i = 0
+    k = 0
+    l = 0
+    encoded_str = ""
+    while j <= string_len - 1:
+        if i == 0 or i == 1:
+            while i <= key - 1 and j <= string_len - 1:
+                string_lst[i][j] = string[j]
+                i += 1
+                j += 1
+        i -= 2
+        if i == key - 2:
+            while i >= 0 and j <= string_len - 1:
+                string_lst[i][j] = string[j]
+                i -= 1
+                j += 1
+        i += 2
+    for k in range(key):
+        for l in range(string_len):
+            if string_lst[k][l] is not None:
+                encoded_str += string_lst[k][l]
+    return encoded_str
+
+
+    
 
 
 # TODO: implement this function. You may delete this comment after you are done.
