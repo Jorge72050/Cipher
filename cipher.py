@@ -34,7 +34,7 @@ def rail_fence_encode(string, key):
     l = 0
     encoded_str = ""
     while j <= string_len - 1:
-        if i == 0 or i == 1:
+        if i in (0,1):
             while i <= key - 1 and j <= string_len - 1:
                 string_lst[i][j] = string[j]
                 i += 1
@@ -52,10 +52,6 @@ def rail_fence_encode(string, key):
                 encoded_str += string_lst[k][l]
     return encoded_str
 
-
-    
-
-
 # TODO: implement this function. You may delete this comment after you are done.
 def rail_fence_decode(string, key):
     """
@@ -65,7 +61,51 @@ def rail_fence_decode(string, key):
     post: function returns a single string that is decoded with
         rail fence algorithm
     """
-
+    string_len = len(string)
+    string_lst = [[None] * string_len for val in range(key)]
+    j = 0
+    i = 0
+    k = 0
+    l = 0
+    counter = 0
+    decoded_str = ""
+    while j <= string_len - 1:
+        if i in (0,1):
+            while i <= key - 1 and j <= string_len - 1:
+                string_lst[i][j] = j
+                i += 1
+                j += 1
+        i -= 2
+        if i == key - 2:
+            while i >= 0 and j <= string_len - 1:
+                string_lst[i][j] = j
+                i -= 1
+                j += 1
+        i += 2
+    # Creates a 2D list with numbers in place of where letter should be
+    for k in range(key):
+        for l in range(string_len):
+            if string_lst[k][l] is not None:
+                string_lst[k][l] = string[counter]
+                counter += 1
+    # Should have encoded list, now just read through list
+    # Re-establish loop variables
+    j = 0
+    i = 0
+    while j <= string_len - 1:
+        if i in (0,1):
+            while i <= key - 1 and j <= string_len - 1:
+                decoded_str += string_lst[i][j]
+                i += 1
+                j += 1
+        i -= 2
+        if i == key - 2:
+            while i >= 0 and j <= string_len - 1:
+                decoded_str += string_lst[i][j]
+                i -= 1
+                j += 1
+        i += 2
+    return decoded_str
 
 # TODO: implement this function. You may delete this comment after you are done.
 def filter_string(string):
