@@ -115,7 +115,12 @@ def filter_string(string):
         removes all digits, punctuation marks, and spaces. It
         returns a single string with only lower case characters
     """
-
+    new_string = ""
+    string = string.lower()
+    for elem in string:
+        if elem.isalpha():
+            new_string += elem
+    return new_string
 
 # TODO: implement this function. You may delete this comment after you are done.
 def encode_character(p, s):
@@ -125,6 +130,18 @@ def encode_character(p, s):
     post: function returns a single character encoded using the
         Vigenere algorithm. You may not use a 2-D list
     """
+    # convert p and s into ASCII values. "a" starts at 97 and "z" ends at 122
+    p_num = ord(p)
+    s_num = ord(s)
+    # get the encoded value
+    encoded_char = (p_num + s_num) - 97
+    if encoded_char > 122: # goes over the bounds
+        encoded_char -= 26
+    # turn it back into its letter value
+    encoded_char = chr(encoded_char)
+
+    return encoded_char
+
 
 
 # TODO: implement this function. You may delete this comment after you are done.
@@ -136,7 +153,6 @@ def decode_character(p, s):
         Vigenere algorithm. You may not use a 2-D list
     """
 
-
 # TODO: implement this function. You may delete this comment after you are done.
 def vigenere_encode(string, phrase):
     """
@@ -144,7 +160,7 @@ def vigenere_encode(string, phrase):
     post: function returns a single string that is encoded with
         Vigenere algorithm
     """
-
+    # passphrase is repeated to match the length of the string
 
 # TODO: implement this function. You may delete this comment after you are done.
 def vigenere_decode(string, phrase):
