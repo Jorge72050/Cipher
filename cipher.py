@@ -16,6 +16,7 @@ UT EID 1: jn29423
 UT EID 2: wz5363
 """
 
+import sys
 
 # TODO: implement this function. You may delete this comment after you are done.
 def rail_fence_encode(string, key):
@@ -215,18 +216,33 @@ def vigenere_decode(string, phrase):
 # TODO: implement this function. You may delete this comment after you are done.
 def main():
     """Main function that reads stdin and runs each cipher"""
+
     # read the plain text from stdin (terminal/input)
+    plain_text = input()
 
     # read the key from stdin (terminal/input)
+    key = input()
 
     # encrypt and print the encoded text using rail fence cipher
+    encoded_text = rail_fence_encode(plain_text, key)
+    print("Rail Fence Cipher")
+    print("")
+    print(f"Plain Text: {plain_text}")
+    print(f"Key: {key}")
+    print(f"Encoded Text: {encoded_text}")
 
     # read encoded text from stdin (terminal/input)
+    encoded_text = input()
 
     # read the key from stdin (terminal/input)
+    key = input()
+    print("")
 
     # decrypt and print the plain text using rail fence cipher
-
+    decoded_text = rail_fence_decode(encoded_text, key)
+    print(f"Encoded Text: {encoded_text}")
+    print(f"Enter Key: {key}")
+    print(f"Decoded Text: {decoded_text}")
     # read the plain text from stdin (terminal/input)
 
     # read the pass phrase from stdin (terminal/input)
