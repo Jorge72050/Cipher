@@ -174,7 +174,6 @@ def vigenere_encode(string, phrase):
     string = filter_string(string)
     str_len = len(string)
     phr_len = len(phrase)
-    string = filter_string(string)
     # Generates passphrase which repeats until len(phrase) = len(string)
     for i in range(str_len):
         count = 0
@@ -183,7 +182,7 @@ def vigenere_encode(string, phrase):
             count += 1
             i += 1
     for l in range(str_len):
-        encoded_phrase += encode_character(string[l], passphrase[l])
+        encoded_phrase += encode_character(passphrase[l], string[l])
     return encoded_phrase
 
     # passphrase is repeated to match the length of the string
@@ -195,6 +194,22 @@ def vigenere_decode(string, phrase):
     post: function returns a single string that is decoded with
         Vigenere algorithm
     """
+    decoded_phrase = ""
+    passphrase = ""
+    string = filter_string(string)
+    str_len = len(string)
+    phr_len = len(phrase)
+    # Generates passphrase which repeats until len(phrase) = len(string)
+    for i in range(str_len):
+        count = 0
+        for j in range(phr_len):
+            if len(passphrase) < len(string):
+                passphrase += phrase[count]
+                count += 1
+                i += 1
+    for l in range(str_len):
+        decoded_phrase += decode_character(passphrase[l], string[l])
+    return decoded_phrase
 
 
 # TODO: implement this function. You may delete this comment after you are done.
