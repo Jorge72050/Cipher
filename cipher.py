@@ -65,8 +65,6 @@ def rail_fence_decode(string, key):
     string_lst = [[None] * string_len for val in range(key)]
     j = 0
     i = 0
-    k = 0
-    l = 0
     counter = 0
     decoded_str = ""
     while j <= string_len - 1:
@@ -171,6 +169,23 @@ def vigenere_encode(string, phrase):
     post: function returns a single string that is encoded with
         Vigenere algorithm
     """
+    encoded_phrase = ""
+    passphrase = ""
+    string = filter_string(string)
+    str_len = len(string)
+    phr_len = len(phrase)
+    string = filter_string(string)
+    # Generates passphrase which repeats until len(phrase) = len(string)
+    for i in range(str_len):
+        count = 0
+        for j in range(phr_len):
+            passphrase += phrase[count]
+            count += 1
+            i += 1
+    for l in range(str_len):
+        encoded_phrase += encode_character(string[l], passphrase[l])
+    return encoded_phrase
+
     # passphrase is repeated to match the length of the string
 
 # TODO: implement this function. You may delete this comment after you are done.
