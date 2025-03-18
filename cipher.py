@@ -152,6 +152,17 @@ def decode_character(p, s):
     post: function returns a single character decoded using the
         Vigenere algorithm. You may not use a 2-D list
     """
+    # convert p and s into ASCII values. "a" starts at 97 and "z" ends at 122
+    num_p = ord(p)
+    num_s = ord(s)
+    # turn the encoded letter back to the plain text
+    plain_char = (num_s - num_p) + 97
+    if plain_char < 97:
+        plain_char += 26
+    # turn it back into its letter value
+    plain_char = chr(plain_char)
+
+    return plain_char
 
 # TODO: implement this function. You may delete this comment after you are done.
 def vigenere_encode(string, phrase):
