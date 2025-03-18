@@ -178,7 +178,7 @@ def vigenere_encode(string, phrase):
     # Generates passphrase which repeats until len(phrase) = len(string)
     for i in range(str_len):
         count = 0
-        for j in range(phr_len):
+        for _ in range(phr_len):
             passphrase += phrase[count]
             count += 1
             i += 1
@@ -203,7 +203,7 @@ def vigenere_decode(string, phrase):
     # Generates passphrase which repeats until len(phrase) = len(string)
     for i in range(str_len):
         count = 0
-        for j in range(phr_len):
+        for _ in range(phr_len):
             if len(passphrase) < len(string):
                 passphrase += phrase[count]
                 count += 1
