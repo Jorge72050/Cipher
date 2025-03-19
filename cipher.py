@@ -243,17 +243,28 @@ def main():
     print(f"Encoded Text: {encoded_text}")
     print(f"Enter Key: {key}")
     print(f"Decoded Text: {decoded_text}")
+
     # read the plain text from stdin (terminal/input)
-
+    plain_text = input()
     # read the pass phrase from stdin (terminal/input)
-
+    pass_phrase = input()
     # encrypt and print the encoded text using Vigenere cipher
-
+    encoded_text = vigenere_encode(plain_text, pass_phrase)
+    print("Vigenere Cipher")
+    print("")
+    print(f"Plain Text: {plain_text}")
+    print(f"Pass Phrase: {pass_phrase}")
+    print(f"Encoded Text: {encoded_text}")
     # read the encoded text from stdin (terminal/input)
-
+    encoded_text = input()
     # read the pass phrase from stdin (terminal/input)
-
+    pass_phrase = input()
     # decrypt and print the plain text using Vigenere cipher
+    decoded_text = vigenere_decode(encoded_text, pass_phrase)
+    print(f"Encoded Text: {encoded_text}")
+    print(f"Pass Phrase: {pass_phrase}")
+    print(f"Decoded Text: {decoded_text}")
+
 
 
 # Do NOT modify the following code.
