@@ -16,9 +16,6 @@ UT EID 1: jn29423
 UT EID 2: wz5363
 """
 
-import sys
-
-# TODO: implement this function. You may delete this comment after you are done.
 def rail_fence_encode(string, key):
     """
     pre: string is a string of characters and key is a positive
@@ -28,7 +25,7 @@ def rail_fence_encode(string, key):
         rail fence algorithm
     """
     string_len = len(string)
-    string_lst = [[None] * string_len for val in range(key)]
+    string_lst = [[None] * string_len for _ in range(key)]
     j = 0
     i = 0
     k = 0
@@ -221,7 +218,7 @@ def main():
     plain_text = input()
 
     # read the key from stdin (terminal/input)
-    key = input()
+    key = int(input())
 
     # encrypt and print the encoded text using rail fence cipher
     encoded_text = rail_fence_encode(plain_text, key)
@@ -235,7 +232,7 @@ def main():
     encoded_text = input()
 
     # read the key from stdin (terminal/input)
-    key = input()
+    key = int(input())
     print("")
 
     # decrypt and print the plain text using rail fence cipher
@@ -243,7 +240,7 @@ def main():
     print(f"Encoded Text: {encoded_text}")
     print(f"Enter Key: {key}")
     print(f"Decoded Text: {decoded_text}")
-
+    print("")
     # read the plain text from stdin (terminal/input)
     plain_text = input()
     # read the pass phrase from stdin (terminal/input)
@@ -255,6 +252,7 @@ def main():
     print(f"Plain Text: {plain_text}")
     print(f"Pass Phrase: {pass_phrase}")
     print(f"Encoded Text: {encoded_text}")
+    print("")
     # read the encoded text from stdin (terminal/input)
     encoded_text = input()
     # read the pass phrase from stdin (terminal/input)
@@ -264,8 +262,6 @@ def main():
     print(f"Encoded Text: {encoded_text}")
     print(f"Pass Phrase: {pass_phrase}")
     print(f"Decoded Text: {decoded_text}")
-
-
 
 # Do NOT modify the following code.
 if __name__ == "__main__":
