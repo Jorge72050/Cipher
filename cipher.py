@@ -68,19 +68,6 @@ def rail_fence_decode(string, key):
     string_lst = encode(string_lst, string, key, string_len)
     counter = 0
     decoded_str = ""
-    # while j <= string_len - 1:
-    #     if i in (0,1):
-    #         while i <= key - 1 and j <= string_len - 1:
-    #             string_lst[i][j] = j
-    #             i += 1
-    #             j += 1
-    #     i -= 2
-    #     if i == key - 2:
-    #         while i >= 0 and j <= string_len - 1:
-    #             string_lst[i][j] = j
-    #             i -= 1
-    #             j += 1
-    #     i += 2
     # Creates a 2D list with numbers in place of where letter should be
     for k in range(key):
         for l in range(string_len):
@@ -147,8 +134,8 @@ def decode_character(p, s):
         Vigenere algorithm. You may not use a 2-D list
     """
     # convert p and s into ASCII values. "a" starts at 97 and "z" ends at 122
-    num_p = ord(p)
-    num_s = ord(s)
+    num_p = ord(p.lower())
+    num_s = ord(s.lower())
     # turn the encoded letter back to the plain text
     plain_char = (num_s - num_p) + 97
     if plain_char < 97:
