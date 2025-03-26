@@ -26,11 +26,20 @@ def rail_fence_encode(string, key):
     """
     string_len = len(string)
     string_lst = [[None] * string_len for _ in range(key)]
-    j = 0
-    i = 0
     k = 0
     l = 0
     encoded_str = ""
+    string_lst = encode(string_lst, string, key, string_len)
+    for k in range(key):
+        for l in range(string_len):
+            if string_lst[k][l] is not None:
+                encoded_str += string_lst[k][l]
+    return encoded_str
+
+def encode(string_lst, string, key, string_len):
+    "Helper function to do basic encoding"
+    i = 0
+    j = 0
     while j <= string_len - 1:
         if i in (0,1):
             while i <= key - 1 and j <= string_len - 1:
@@ -44,11 +53,7 @@ def rail_fence_encode(string, key):
                 i -= 1
                 j += 1
         i += 2
-    for k in range(key):
-        for l in range(string_len):
-            if string_lst[k][l] is not None:
-                encoded_str += string_lst[k][l]
-    return encoded_str
+    return string_lst
 
 def rail_fence_decode(string, key):
     """
@@ -60,23 +65,22 @@ def rail_fence_decode(string, key):
     """
     string_len = len(string)
     string_lst = [[None] * string_len for val in range(key)]
-    j = 0
-    i = 0
+    string_lst = encode(string_lst, string, key, string_len)
     counter = 0
     decoded_str = ""
-    while j <= string_len - 1:
-        if i in (0,1):
-            while i <= key - 1 and j <= string_len - 1:
-                string_lst[i][j] = j
-                i += 1
-                j += 1
-        i -= 2
-        if i == key - 2:
-            while i >= 0 and j <= string_len - 1:
-                string_lst[i][j] = j
-                i -= 1
-                j += 1
-        i += 2
+    # while j <= string_len - 1:
+    #     if i in (0,1):
+    #         while i <= key - 1 and j <= string_len - 1:
+    #             string_lst[i][j] = j
+    #             i += 1
+    #             j += 1
+    #     i -= 2
+    #     if i == key - 2:
+    #         while i >= 0 and j <= string_len - 1:
+    #             string_lst[i][j] = j
+    #             i -= 1
+    #             j += 1
+    #     i += 2
     # Creates a 2D list with numbers in place of where letter should be
     for k in range(key):
         for l in range(string_len):
@@ -134,8 +138,6 @@ def encode_character(p, s):
     encoded_char = chr(encoded_char)
 
     return encoded_char
-
-
 
 def decode_character(p, s):
     """
